@@ -4,8 +4,9 @@ class Tambah extends CI_Controller{
  
 	function __construct(){
 		parent::__construct();			
-		$this->load->model("m_tambah");
+		$this->load->model("m_listdata");
 		$this->load->model("m_ruang");
+		$this->load->library('form_validation');
 
 	}
 	public function index(){
@@ -14,22 +15,21 @@ class Tambah extends CI_Controller{
 	}
 	public function tambah_aksi(){
 		
-		$tanggal = $this->input->post('tanggal');
-		$tanggal = date ('y-m-d', strtotime($tanggal) );
-		$kode_ruang = $this->input->post('kode_ruang', TRUE);
-		$jam_mulai = $this->input->post('jam_mulai');
-		$jam_selesai = $this->input->post('jam_selesai');
- 
-		$data = array(
-			'tanggal' => $tanggal,
-			'kode_ruang' => $kode_ruang,
-			'jam_mulai' => $jam_mulai,
-			'jam_selesai' => $jam_selesai
-			);
-		$this->m_tambah->index($data,'tb_peminjaman');
+		$jadwal = $this->m_listdata;
+		$validation = $this->form_validation;
+		$validation -> set_rules($jadwal->rules());
+
+		if ($validation->run()){
+			$jadwal->simpan();
+			$this->session->set_flashdata('success','Jadwal berhasil Disimpan');
 		redirect('tambah');
+		} 
+		else{
+			$this->load->view('tambah');
+			echo "<script>alert('Masukan data dengan benar');</script>";
 	}
 
 	
+}
 }
 ?>

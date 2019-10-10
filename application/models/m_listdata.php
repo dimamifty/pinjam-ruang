@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class m_tambah extends CI_Model
+class m_listdata extends CI_Model
 {
 
     private $_table = "tb_peminjaman";
@@ -41,16 +41,27 @@ class m_tambah extends CI_Model
         ];
     }
 
-    public function index($data,$table)
-    {
-        $this->db->insert($table,$data);
-    }
-    public function getAll(){
+    
+    public function index(){
         $this->db->select('tb_peminjaman.*, tb_ruangan.nama_ruang AS nama_ruang');
       $this->db->join('tb_ruangan', 'tb_peminjaman.kode_ruang = tb_ruangan.kode_ruang');
       $this->db->from('tb_peminjaman');
       $this->db->order_by('id_peminjaman', 'asc');
       $query = $this->db->get();
       return $query->result();
+    }
+     public function simpan()
+    {
+        $post = $this->input->post();
+        //$tanggal = date ('y-m-d', strtotime($tanggal) ); 
+        
+        $this->tanggal=$post["tanggal"];
+        $this->kode_ruang=$post["kode_ruang"];
+        $this->jam_mulai=$post["jam_mulai"];
+        $this->jam_selesai=$post["jam_selesai"];
+
+
+       $this->db->insert($this->_table,$this);
+        
     }
     }
