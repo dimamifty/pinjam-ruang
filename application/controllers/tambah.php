@@ -27,7 +27,7 @@ class Tambah extends CI_Controller{
 			'jam_selesai' => $jam_selesai
 			);
 		$this->m_tambah->index($data,'tb_peminjaman');
-		redirect('tambah');
+		redirect('listdata');
 	}
 
 	
