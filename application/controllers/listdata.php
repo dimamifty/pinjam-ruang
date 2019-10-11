@@ -10,22 +10,15 @@ class Listdata extends CI_Controller
 		# code...
 		parent::__construct();
 
-		$this->load->model("m_tambah");
+		$this->load->model("m_listdata");
 
 	}
 
 	public function index(){
-	$data["list"] = $this->m_tambah->getAll();
+	$data["list"] = $this->m_listdata->index();
 
 	$this->load->view('listdata', $data);
 	
-	}
-	 
-	public function ruang(){
-	$data["list"] = $this->m_listdata->getAll();
-
-	$this->load->view('tambah', $data);
-	 
 	}
 
 }

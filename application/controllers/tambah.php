@@ -3,8 +3,9 @@ class Tambah extends CI_Controller{
 
 	function __construct(){
 		parent::__construct();			
-		$this->load->model("m_tambah");
+		$this->load->model("m_listdata");
 		$this->load->model("m_ruang");
+		$this->load->library('form_validation');
 
 	}
 	public function index(){
@@ -12,6 +13,7 @@ class Tambah extends CI_Controller{
 		$this->load->view('tambah', $data);
 	}
 	public function tambah_aksi(){
+<<<<<<< HEAD
 		//data dari form input
 		$kode_ruang = $this->input->post('kode_ruang', TRUE);
 		$tgl_mulai = date ('Y-m-d', strtotime($this->input->post('date_start')) );
@@ -42,11 +44,28 @@ class Tambah extends CI_Controller{
 			);
 			$this->m_tambah->index($data,'tb_peminjaman');
 			redirect('listdata');
+=======
+		
+		$jadwal = $this->m_listdata;
+		$validation = $this->form_validation;
+		$validation -> set_rules($jadwal->rules());
+
+		if ($validation->run()){
+			$jadwal->simpan();
+			$this->session->set_flashdata('success','Jadwal berhasil Disimpan');
+		redirect('tambah');
+		} 
+		else{
+			$this->load->view('tambah');
+			echo "<script>alert('Masukan data dengan benar');</script>";
+	}
+>>>>>>> be2730b20e738cd1ea54729a1905a9f359aa1e88
 
 		}else{
 			echo "<script>alert('Ruangan Sudah disewa')</script>";
 			redirect($_SERVER['HTTP_REFERER']);			
 		}					
 	}	
+}
 }
 ?>

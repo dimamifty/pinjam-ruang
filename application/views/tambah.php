@@ -5,6 +5,11 @@
 <body id="page-top">
 
 <?php $this->load->view('templates/navbar.php') ?>  
+<?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success" role="alert">
+          <?php echo $this->session->flashdata('success'); ?>
+        </div>
+        <?php endif; ?>
 
   <div id="wrapper">
 
@@ -24,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="form-group">
-          <label for="Nama Ruang">Nama Ruang</label>
+          <label>Nama Ruang</label>
           <select class="form-control" name="kode_ruang" onchange="showUser(this.value)">
             <option>pilih ruangan</option>
             <?php foreach ($list as $list): ?> {
@@ -58,7 +63,7 @@
 			<button name='tambah' type='submit' class='btn btn-primary col-md-2 col-xs-12'>Tambah</button> 
 		</div>
     <div class="card-footer small text-muted"><a href="<?php echo base_url('listdata') ?>">
-        <button name="batal" type="button" class="btn btn-primary col-md-2 col-xs-12 float-left mr-5">batal</button></a></div>
+        <button name="batal" type="button" class="btn btn-primary col-md-2 col-xs-12 float-left mr-5">Kembali</button></a></div>
 	</form>
 
   <?php
