@@ -19,7 +19,7 @@ class m_listdata extends CI_Model
             'label' => 'id_peminjaman',
             'rules' => 'numeric'],
 
-             ['field' => 'kode_ruang',
+            ['field' => 'kode_ruang',
             'label' => 'kode_ruang',
             'rules' => 'numeric'],
 
@@ -41,8 +41,7 @@ class m_listdata extends CI_Model
         ];
     }
 
-<<<<<<< HEAD:application/models/m_tambah.php
-    public function index($data,$table)
+    public function save($data,$table)
     {
         $this->db->insert($table,$data);
     }
@@ -51,27 +50,24 @@ class m_listdata extends CI_Model
     {
         $this->db->select("*");
         $this->db->from("tb_peminjaman");
-         $query = $this->db->get();
-      return $query->result();
+        $query = $this->db->get();
+        return $query->result();
     }
 
     public function cekData($table,$where){      
         return $this->db->get_where($table, $where);
     }
 
-    public function getAll(){
-=======
-    
     public function index(){
->>>>>>> be2730b20e738cd1ea54729a1905a9f359aa1e88:application/models/m_listdata.php
         $this->db->select('tb_peminjaman.*, tb_ruangan.nama_ruang AS nama_ruang');
-      $this->db->join('tb_ruangan', 'tb_peminjaman.kode_ruang = tb_ruangan.kode_ruang');
-      $this->db->from('tb_peminjaman');
-      $this->db->order_by('id_peminjaman', 'asc');
-      $query = $this->db->get();
-      return $query->result();
+        $this->db->join('tb_ruangan', 'tb_peminjaman.kode_ruang = tb_ruangan.kode_ruang');
+        $this->db->from('tb_peminjaman');
+        $this->db->order_by('id_peminjaman', 'asc');
+        $query = $this->db->get();
+        return $query->result();
     }
-     public function simpan()
+
+    public function simpan()
     {
         $post = $this->input->post();
         //$tanggal = date ('y-m-d', strtotime($tanggal) ); 
@@ -82,7 +78,7 @@ class m_listdata extends CI_Model
         $this->jam_selesai=$post["jam_selesai"];
 
 
-       $this->db->insert($this->_table,$this);
+        $this->db->insert($this->_table,$this);
         
     }
-    }
+}
