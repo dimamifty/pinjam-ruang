@@ -35,9 +35,13 @@
           </select> 
         </div>
 				<div class="form-group">
-					<label for="Tanggal">Tanggal</label>
-					<input value=""  type="date" class="form-control" name="tanggal">
+					<label for="Tanggal">Tanggal Sewa</label>
+					<input value=""  type="date" class="form-control" name="date_start">
 				</div>
+        <div class="form-group">
+          <label for="Tanggal">Tanggal Selesai</label>
+          <input value=""  type="date" class="form-control" name="date_end">
+        </div>
 				<div class="form-group">
 					<label for="Jam Mulai" >Jam Mulai</label>
 					<input value=""  type="time" class="form-control" name="jam_mulai">
@@ -56,6 +60,15 @@
     <div class="card-footer small text-muted"><a href="<?php echo base_url('listdata') ?>">
         <button name="batal" type="button" class="btn btn-primary col-md-2 col-xs-12 float-left mr-5">batal</button></a></div>
 	</form>
+
+  <?php
+
+  date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
+$now = date('Y/m/d H:i:s');
+
+echo $now;
+
+  ?>
      
 	<p class="small text-center text-muted my-5">
 		<em></em>

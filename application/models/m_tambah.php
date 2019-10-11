@@ -45,6 +45,19 @@ class m_tambah extends CI_Model
     {
         $this->db->insert($table,$data);
     }
+
+    public function getData()
+    {
+        $this->db->select("*");
+        $this->db->from("tb_peminjaman");
+         $query = $this->db->get();
+      return $query->result();
+    }
+
+    public function cekData($table,$where){      
+        return $this->db->get_where($table, $where);
+    }
+
     public function getAll(){
         $this->db->select('tb_peminjaman.*, tb_ruangan.nama_ruang AS nama_ruang');
       $this->db->join('tb_ruangan', 'tb_peminjaman.kode_ruang = tb_ruangan.kode_ruang');
